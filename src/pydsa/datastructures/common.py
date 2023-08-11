@@ -181,3 +181,32 @@ class LinkedList(Collection[_T]):
         return not bool(self._length)
 
 
+class DoublyLinkedList(LinkedList[_T]):
+    class Node(LinkedList.Node[_T]):
+        def __init__(self,
+                     _data: Optional[_T] = None,
+                     _prev: Optional[Node[_T]] = None,
+                     _next: Optional[Node[_T]] = None
+                     ) -> None:
+            super().__init__(_data, _next)
+            self._prev = _prev
+
+        @property
+        def prev(self):
+            return self._prev
+
+        @prev.setter
+        def prev(self, prev: DoublyLinkedList.Node[_T]):
+            if not isinstance(prev, DoublyLinkedList.Node):
+                raise TypeError()
+            self._prev = prev
+
+    def __init__(self, iterable: Optional[Iterable[_T]]):
+        self._tail = None
+        super().__init__(iterable)
+    # def __init__(self, iterable: Optional[Iterable[_T]] = None):
+    #     self._head: Optional[LinkedList.Node[_T]] = None
+    #     self._length: int = 0
+    #     if iterable:
+    #         for x in iterable:
+    #             self.insert(x)
