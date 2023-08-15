@@ -1,0 +1,13 @@
+<diagram program="umletino" version="15.1"><zoom_level>10</zoom_level><element><id>UMLClass</id><coordinates><x>300</x><y>270</y><w>130</w><h>60</h></coordinates><panel_attributes>Node[_T]
+--
+- data: _T</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>300</y><w>150</w><h>90</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..*</panel_attributes><additional_attributes>10;30;10;70;130;70;130;10;60;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>330</x><y>130</y><w>200</w><h>60</h></coordinates><panel_attributes>Graph
+--
+- root: Node[_T]
+- content: set[Node[_T]]
+- adj_matrix: list[list[Node[_T]]]
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>370</x><y>180</y><w>40</w><h>110</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=1</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element></diagram>
