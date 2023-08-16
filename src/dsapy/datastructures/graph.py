@@ -27,6 +27,8 @@ _T = TypeVar('_T')
 
 
 class Vertex(Generic[_T]):
+    """Graph Vertex
+    """
     
     def __init__(self, data: _T | None = None) -> None:
         super().__init__()
@@ -42,6 +44,11 @@ class Vertex(Generic[_T]):
 
 
 class Graph(Collection[_T]):
+    """Graph datastructure
+    
+    As defined in https://en.wikipedia.org/wiki/Graph_(abstract_data_type)
+    
+    """
     
     def __init__(self) -> None:
         super().__init__()
@@ -62,6 +69,8 @@ class Graph(Collection[_T]):
         ...
     
     def adjacent(self, __x: Vertex[_T] | _T, __y: Vertex[_T] | _T) -> bool:
+        """Tests whether there is an edge from the vertex x to the vertex y.
+        """
         
         index_x = self.index(__x)
         index_y = self.index(__y)
@@ -72,27 +81,49 @@ class Graph(Collection[_T]):
         return index_y in self._incidence_matrix[index_x]
                 
     def neighbor(self, __x:  Vertex[_T] | _T) -> int:
+        """Lists all vertices y such that there is an edge from the vertex x to the vertex y.
+        """
         return self._incidence_matrix[self.index(__x)]
     
     def add_vertex(self, __x:  Vertex[_T] | _T) -> None:
+        """Adds the vertex x, if it is not there.
+        """
         if self.index(__x) != -1:
             raise ValueError('Vertex already added.')
         
         cardinality = len(self._vertices)
         
     
-    def remove_vertex(self, x:  Vertex[_T]): ...
+    def remove_vertex(self, __x:  Vertex[_T]): 
+        """Removes the vertex x, if it is there.
+        """
+        ...
     
-    def add_edge(self, x:  Vertex[_T], y:  Vertex[_T], z): ...
     
-    def remove_edge(self, x:  Vertex[_T], y:  Vertex[_T]): ...
+    def add_edge(self, __x:  Vertex[_T], __y:  Vertex[_T], __z):
+        """Adds the edge z from the vertex x to the vertex y, if it is not there.
+        """
+        ...
     
-    def get_vertex_value(self, x:  Vertex[_T], y:  Vertex[_T]): ...
+    def remove_edge(self, __x:  Vertex[_T], __y:  Vertex[_T]): 
+        """Removes the edge from the vertex x to the vertex y, if it is there.
+        """
+        ...
     
-    def set_vertex_value(self, x:  Vertex[_T], y:  Vertex[_T], v): ...
+    def get_vertex_value(self, __x:  Vertex[_T], __y:  Vertex[_T]):
+        """Returns the value associated with the vertex x.
+        """ 
+        ...
+    
+    def set_vertex_value(self, __x:  Vertex[_T], __y:  Vertex[_T], __v):
+        """Sets the value associated with the vertex x to v.
+        """ 
+        ...
     
     
     def index(self, __x: _T | Vertex[_T]) -> int: # return: {-1 <= i < inf}
+        """Gets the index of a vertex.
+        """
         target = __x.data if isinstance(__x, Vertex) else __x
         for i, n in self._vertices:
             if n == target:
@@ -100,6 +131,8 @@ class Graph(Collection[_T]):
         return -1
     
     def has(self, __x: Vertex[_T] | _T) -> bool:
+        """Checks if graph contains a Vertex with a matching value x.
+        """
         return self.index(__x) != -1
         
     
